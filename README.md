@@ -13,7 +13,6 @@ React song browser with infinite scroll, search and favorites.
 
 ```bash
 npm install
-cp .env.example .env.local  # configure API URL if needed
 npm run dev                  # copies api/db.json.example → api/db.json on first run
 ```
 
