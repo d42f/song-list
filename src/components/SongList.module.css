@@ -2,6 +2,10 @@
   background-color: var(--color-bg);
 }
 
+.songItem:nth-child(odd) {
+  background-color: color-mix(in srgb, var(--color-white) 5%, transparent);
+}
+
 .error {
   display: flex;
   flex-direction: column;

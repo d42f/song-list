@@ -25,7 +25,7 @@ export function SongList() {
   return (
     <div className={styles.wrapper}>
       {songs.map((song) => (
-        <SongItem key={song.id} song={song} />
+        <SongItem key={song.id} className={styles.songItem} song={song} />
       ))}
 
       {isFetchingNextPage && <Loader />}

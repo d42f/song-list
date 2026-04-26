@@ -40,12 +40,12 @@
   border-radius: 50%;
 }
 
-.active {
+.toggleBtn.active {
   background-color: var(--color-text);
   border-color: var(--color-text);
 }
 
-.active:after {
+.toggleBtn.active:after {
   content: '';
   position: absolute;
   inset: 0;
@@ -54,7 +54,7 @@
   background-color: var(--color-bg);
 }
 
-.active .filterIcon {
+.toggleBtn.active .filterIcon {
   background-color: var(--color-text);
   color: var(--color-bg);
 }
@@ -75,33 +75,21 @@
 }
 
 .levelBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 32px;
   height: 32px;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--color-text);
-  opacity: 0.5;
-  transition:
-    opacity 0.15s,
-    transform 0.15s;
 }
 
-.levelBtn:hover {
-  opacity: 0.8;
+.levelBadge {
+  transition: all 0.15s;
 }
 
-.levelBtn.selected {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-.green {
-  background-color: var(--color-level-green);
-}
-.orange {
-  background-color: var(--color-level-orange);
-}
-.red {
-  background-color: var(--color-level-red);
+.levelBtn.selected .levelBadge {
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-text);
+  border-color: var(--color-white);
+  color: var(--color-bg);
 }

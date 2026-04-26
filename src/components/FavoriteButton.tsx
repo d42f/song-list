@@ -4,10 +4,11 @@ import { useFavorites } from '../hooks/useApi'
 import styles from './FavoriteButton.module.css'
 
 interface Props {
+  className?: string
   songId: string
 }
 
-export function FavoriteButton({ songId }: Props) {
+export function FavoriteButton({ className, songId }: Props) {
   const { isFavorite, addFavorite, removeFavorite } = useFavorites(songId)
   function handleClick() {
     if (isFavorite) {
@@ -21,7 +22,7 @@ export function FavoriteButton({ songId }: Props) {
 
   return (
     <button
-      className={styles.wrapper}
+      className={`${styles.wrapper} ${className || ''}`}
       onClick={handleClick}
       aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
     >

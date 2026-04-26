@@ -1,13 +1,8 @@
 import { useState } from 'react'
 import FilterIcon from '@icons/filter.svg?react'
 import { useFilters } from '../context/FiltersContext'
+import { LevelBadge } from './LevelBadge'
 import styles from './LevelFilter.module.css'
-
-function getLevelClass(level: number): string {
-  if (level <= 5) return styles.green
-  if (level <= 10) return styles.orange
-  return styles.red
-}
 
 function getSelectedBadge(levels: Set<number>): string | null {
   if (levels.size === 0) return null
@@ -38,11 +33,11 @@ export function LevelFilter() {
           {Array.from({ length: 15 }, (_, i) => i + 1).map((level) => (
             <button
               key={level}
-              className={`${styles.levelBtn} ${getLevelClass(level)} ${mappedLevels.has(level) ? styles.selected : ''}`}
+              className={`${styles.levelBtn} ${mappedLevels.has(level) ? styles.selected : ''}`}
               onClick={() => onToggleLevel(level)}
               aria-pressed={mappedLevels.has(level)}
             >
-              {level}
+              <LevelBadge className={styles.levelBadge} level={level} />
             </button>
           ))}
         </div>

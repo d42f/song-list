@@ -4,6 +4,8 @@
   justify-content: center;
   width: 28px;
   height: 28px;
+  line-height: 1;
+  border: 2px solid transparent;
   border-radius: 50%;
   font-size: 12px;
   font-weight: 700;
@@ -12,11 +14,11 @@
 }
 
 .green {
-  background-color: var(--color-level-green);
+  border-color: var(--color-level-green);
 }
 .orange {
-  background-color: var(--color-level-orange);
+  border-color: var(--color-level-orange);
 }
 .red {
-  background-color: var(--color-level-red);
+  border-color: var(--color-level-red);
 }
