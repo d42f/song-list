@@ -1,0 +1,25 @@
+.list {
+  background-color: var(--color-bg);
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.retryBtn {
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  padding: 4px 8px;
+}
+
+.sentinel {
+  height: 1px;
+}

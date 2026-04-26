@@ -1,0 +1,34 @@
+{
+  "name": "song-list",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run api\" \"vite\"",
+    "api": "json-server --watch api/db.json --port 3004 --middlewares api/flakyBackend.js",
+    "build": "tsc && vite build",
+    "start": "json-server api/db.json --port $PORT --middlewares api/flakyBackend.js --static public",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.62.0",
+    "json-server": "^0.17.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^25.6.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "jsdom": "^25.0.1",
+    "prettier": "^3.8.3",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vite-plugin-svgr": "^5.2.0",
+    "vitest": "^2.1.8"
+  }
+}

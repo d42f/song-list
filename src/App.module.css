@@ -1,0 +1,9 @@
+.app {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+}
+
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+}
