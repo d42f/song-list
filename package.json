@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "init-db": "node init-db.js",
+    "predev": "npm run init-db",
     "dev": "concurrently \"npm run api\" \"vite\"",
-    "api": "json-server --watch api/db.json --port 3004 --middlewares api/flakyBackend.js",
+    "api": "json-server --watch api/db.json --port 3004 --middlewares api/flakyBackend.cjs",
+    "prebuild": "npm run init-db",
     "build": "tsc && vite build",
-    "start": "json-server api/db.json --port $PORT --middlewares api/flakyBackend.js --static public",
+    "start": "json-server api/db.json --port $PORT --middlewares api/flakyBackend.cjs --static public",
     "test": "vitest",
     "format": "prettier --write src"
   },

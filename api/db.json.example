@@ -8249,14 +8249,5 @@
       "search": "Foo Fighters Wheels"
     }
   ],
-  "favorites": [
-    {
-      "songId": "5b8e4745b3984c68ed819287",
-      "id": 1
-    },
-    {
-      "songId": "5b8e4637b3984c68ed8191d5",
-      "id": 2
-    }
-  ]
+  "favorites": []
 }

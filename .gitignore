@@ -14,6 +14,7 @@ public
 *.local
 .env.production
 .env.production.local
+api/db.json
 
 # Editor directories and files
 .vscode/*
