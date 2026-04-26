@@ -9,7 +9,7 @@
     "api": "json-server --watch api/db.json --port 3004 --middlewares api/flakyBackend.cjs",
     "prebuild": "npm run init-db",
     "build": "tsc && vite build",
-    "start": "json-server api/db.json --port $PORT --middlewares api/flakyBackend.cjs --static public",
+    "start": "json-server api/db.json --port $PORT --host 0.0.0.0 --middlewares api/flakyBackend.cjs --static public",
     "test": "vitest",
     "format": "prettier --write src"
   },
