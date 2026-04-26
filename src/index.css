@@ -23,9 +23,10 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.02em;
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-size: 16px;
 }
 
 button {

@@ -7,7 +7,6 @@
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
-  letter-spacing: 0.02em;
 }
 
 .toggleBtnText {

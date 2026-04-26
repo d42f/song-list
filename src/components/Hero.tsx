@@ -8,7 +8,9 @@ export function Hero() {
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <h1 className={styles.title}>New songs delivered every week</h1>
-        <p className={styles.subtitle}>Here are the most recent additions to the Yousician App. Start playing today!</p>
+        <h2 className={styles.subtitle}>
+          Here are the most recent additions to the Yousician App. Start playing today!
+        </h2>
         <label className={styles.searchWrapper}>
           <input
             className={styles.searchInput}
