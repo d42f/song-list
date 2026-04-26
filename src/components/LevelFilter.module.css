@@ -1,42 +1,77 @@
 .wrapper {
-  padding: 0 16px;
+  padding: 12px 18px;
 }
 
 .header {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  padding: 12px 0;
+  gap: 12px;
+  letter-spacing: 0.02em;
+}
+
+.toggleBtnText {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .toggleBtn {
   display: flex;
+  flex-flow: row nowrap;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  position: relative;
   color: var(--color-text);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  border: 2px solid var(--color-text);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .filterIcon {
-  fill: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  position: relative;
+  z-index: 1;
+  line-height: 1;
+  border-radius: 50%;
+}
+
+.active {
+  background-color: var(--color-text);
+  border-color: var(--color-text);
+}
+
+.active:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  right: 16px;
+  z-index: 0;
+  background-color: var(--color-bg);
+}
+
+.active .filterIcon {
+  background-color: var(--color-text);
+  color: var(--color-bg);
 }
 
 .badge {
-  background-color: var(--color-card);
-  color: var(--color-text);
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 10px;
+  padding: 0 10px 0 16px;
+  position: relative;
+  z-index: 1;
+  color: var(--color-white);
 }
 
 .levels {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 8px 0 16px;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 24px 0;
 }
 
 .levelBtn {

@@ -24,10 +24,12 @@ export function LevelFilter() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <button className={styles.toggleBtn} onClick={() => setIsOpen((o) => !o)}>
-          {isOpen ? 'HIDE FILTER' : 'FILTER BY LEVEL'}
-          {!isOpen && badge && <span className={styles.badge}>{badge}</span>}
-          <FilterIcon width={20} height={20} className={styles.filterIcon} />
+        <span className={styles.toggleBtnText}>{isOpen ? 'HIDE FILTER' : 'FILTER BY LEVEL'}</span>
+        <button className={`${styles.toggleBtn} ${badge ? styles.active : ''}`} onClick={() => setIsOpen((o) => !o)}>
+          {badge && <span className={styles.badge}>{badge}</span>}
+          <span className={styles.filterIcon}>
+            <FilterIcon />
+          </span>
         </button>
       </div>
 
