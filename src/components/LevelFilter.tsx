@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import FilterIcon from '../../assets/icons/filter.svg?react'
+import FilterIcon from '@icons/filter.svg?react'
 import styles from './LevelFilter.module.css'
 
 interface Props {

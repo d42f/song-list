@@ -1,4 +1,4 @@
-import SearchIcon from '../../assets/icons/search.svg?react'
+import SearchIcon from '@icons/search.svg?react'
 import styles from './Hero.module.css'
 
 interface Props {

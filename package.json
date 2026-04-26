@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "start": "json-server api/db.json --port $PORT --middlewares api/flakyBackend.js --static public",
     "test": "vitest",
-    "format": "prettier --write ."
+    "format": "prettier --write src"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.0",

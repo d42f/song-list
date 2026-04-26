@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { addFavorite, fetchFavorites, fetchSongs, removeFavorite } from '../api'
 import type { Favorite } from '../types'
+import { addFavorite, fetchFavorites, fetchSongs, removeFavorite } from '../api'
 
 const LIMIT = 20
 
@@ -16,7 +16,7 @@ export function useSongs(search: string, levels: number[]) {
   })
 }
 
-export function useFavorites() {
+export function useFavorites(songId: string) {
   const queryClient = useQueryClient()
 
   const query = useQuery({
@@ -25,10 +25,11 @@ export function useFavorites() {
   })
 
   const favorites = new Map<string, number>((query.data ?? []).map((f) => [f.songId, f.id]))
+  const favoriteId = favorites.get(songId) as number
 
   const addMutation = useMutation({
-    mutationFn: (songId: string) => addFavorite(songId),
-    onMutate: async (songId) => {
+    mutationFn: () => addFavorite(songId),
+    onMutate: async () => {
       await queryClient.cancelQueries({ queryKey: ['favorites'] })
       const previous = queryClient.getQueryData<Favorite[]>(['favorites'])
       queryClient.setQueryData<Favorite[]>(['favorites'], (old) => [...(old ?? []), { id: 0, songId }])
@@ -43,8 +44,8 @@ export function useFavorites() {
   })
 
   const removeMutation = useMutation({
-    mutationFn: (favoriteId: number) => removeFavorite(favoriteId),
-    onMutate: async (favoriteId) => {
+    mutationFn: () => removeFavorite(favoriteId),
+    onMutate: async () => {
       await queryClient.cancelQueries({ queryKey: ['favorites'] })
       const previous = queryClient.getQueryData<Favorite[]>(['favorites'])
       queryClient.setQueryData<Favorite[]>(['favorites'], (old) => (old ?? []).filter((f) => f.id !== favoriteId))
@@ -59,8 +60,8 @@ export function useFavorites() {
   })
 
   return {
-    favorites,
     isLoading: query.isLoading,
+    isFavorite: favorites.has(songId),
     addFavorite: addMutation.mutate,
     removeFavorite: removeMutation.mutate,
   }

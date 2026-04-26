@@ -1,58 +1,34 @@
-import { useEffect, useRef } from 'react'
-import type { Song } from '../types'
+import { useCallback } from 'react'
+import { useSongs } from '../hooks/useApi'
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import { Loader } from './Loader'
 import { SongItem } from './SongItem'
 import styles from './SongList.module.css'
 
 interface Props {
-  songs: Song[]
-  favorites: Map<string, number>
-  onToggleFavorite: (songId: string, favoriteId?: number) => void
-  isFetchingNextPage: boolean
-  hasNextPage: boolean
-  isError: boolean
-  onRetry: () => void
-  fetchNextPage: () => void
+  search: string
+  levels: number[]
 }
 
-export function SongList({
-  songs,
-  favorites,
-  onToggleFavorite,
-  isFetchingNextPage,
-  hasNextPage,
-  isError,
-  onRetry,
-  fetchNextPage,
-}: Props) {
-  const sentinelRef = useRef<HTMLDivElement>(null)
+export function SongList({ search, levels }: Props) {
+  const { data, isFetchingNextPage, hasNextPage, isError, refetch, isLoading, fetchNextPage } = useSongs(search, levels)
 
-  useEffect(() => {
-    const sentinel = sentinelRef.current
-    if (!sentinel) return
+  const songs = data?.pages.flatMap((p) => p.songs) ?? []
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
-          fetchNextPage()
-        }
-      },
-      { rootMargin: '200px' },
-    )
-
-    observer.observe(sentinel)
-    return () => observer.disconnect()
+  const handleSentinel = useCallback(() => {
+    if (hasNextPage && !isFetchingNextPage) fetchNextPage()
   }, [hasNextPage, isFetchingNextPage, fetchNextPage])
+
+  const sentinelRef = useIntersectionObserver(handleSentinel, !!hasNextPage)
+
+  if (isLoading) {
+    return <Loader />
+  }
 
   return (
     <div className={styles.list}>
       {songs.map((song) => (
-        <SongItem
-          key={song.id}
-          song={song}
-          isFavorite={favorites.has(song.id)}
-          onToggleFavorite={() => onToggleFavorite(song.id, favorites.get(song.id))}
-        />
+        <SongItem key={song.id} song={song} />
       ))}
 
       {isFetchingNextPage && <Loader />}
@@ -60,7 +36,7 @@ export function SongList({
       {isError && !isFetchingNextPage && (
         <div className={styles.error}>
           <span>Failed to load songs</span>
-          <button className={styles.retryBtn} onClick={onRetry}>
+          <button className={styles.retryBtn} onClick={() => refetch()}>
             Try again
           </button>
         </div>
