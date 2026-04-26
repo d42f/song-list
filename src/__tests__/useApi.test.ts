@@ -12,13 +12,16 @@ const mockFetchFavorites = vi.mocked(fetchFavorites)
 
 function createWrapper() {
   const client = new QueryClient({ defaultOptions: { queries: { retry: false } } })
-  return ({ children }: { children: React.ReactNode }) =>
-    createElement(QueryClientProvider, { client }, children)
+  return ({ children }: { children: React.ReactNode }) => createElement(QueryClientProvider, { client }, children)
 }
 
 describe('useSongs', () => {
   beforeEach(() => {
-    mockFetchSongs.mockResolvedValue({ songs: [{ id: '1', title: 'T', artist: 'A', images: '', level: 1, search: '' }], total: 1, nextStart: 20 })
+    mockFetchSongs.mockResolvedValue({
+      songs: [{ id: '1', title: 'T', artist: 'A', images: '', level: 1, search: '' }],
+      total: 1,
+      nextStart: 20,
+    })
     mockFetchFavorites.mockResolvedValue([])
   })
 
@@ -31,27 +34,23 @@ describe('useSongs', () => {
   })
 
   it('refetches when search changes', async () => {
-    const { result, rerender } = renderHook(
-      ({ search }: { search: string }) => useSongs(search, []),
-      { wrapper: createWrapper(), initialProps: { search: '' } as { search: string } },
-    )
+    const { result, rerender } = renderHook(({ search }: { search: string }) => useSongs(search, []), {
+      wrapper: createWrapper(),
+      initialProps: { search: '' } as { search: string },
+    })
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     rerender({ search: 'rock' })
-    await waitFor(() =>
-      expect(mockFetchSongs).toHaveBeenCalledWith(expect.objectContaining({ search: 'rock' })),
-    )
+    await waitFor(() => expect(mockFetchSongs).toHaveBeenCalledWith(expect.objectContaining({ search: 'rock' })))
   })
 
   it('refetches when levels change', async () => {
-    const { result, rerender } = renderHook(
-      ({ levels }: { levels: number[] }) => useSongs('', levels),
-      { wrapper: createWrapper(), initialProps: { levels: [] } as { levels: number[] } },
-    )
+    const { result, rerender } = renderHook(({ levels }: { levels: number[] }) => useSongs('', levels), {
+      wrapper: createWrapper(),
+      initialProps: { levels: [] } as { levels: number[] },
+    })
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     rerender({ levels: [1, 2] })
-    await waitFor(() =>
-      expect(mockFetchSongs).toHaveBeenCalledWith(expect.objectContaining({ levels: [1, 2] })),
-    )
+    await waitFor(() => expect(mockFetchSongs).toHaveBeenCalledWith(expect.objectContaining({ levels: [1, 2] })))
   })
 })
 

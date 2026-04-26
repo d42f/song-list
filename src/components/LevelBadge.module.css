@@ -11,6 +11,12 @@
   color: var(--color-text);
 }
 
-.green { background-color: var(--color-level-green); }
-.orange { background-color: var(--color-level-orange); }
-.red { background-color: var(--color-level-red); }
+.green {
+  background-color: var(--color-level-green);
+}
+.orange {
+  background-color: var(--color-level-orange);
+}
+.red {
+  background-color: var(--color-level-red);
+}

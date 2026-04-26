@@ -24,10 +24,11 @@ export function SongItem({ song, isFavorite, onToggleFavorite }: Props) {
         onClick={onToggleFavorite}
         aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       >
-        {isFavorite
-          ? <FavoriteIcon width={24} height={24} className={styles.favIconActive} />
-          : <FavoriteBorderIcon width={24} height={24} className={styles.favIcon} />
-        }
+        {isFavorite ? (
+          <FavoriteIcon width={24} height={24} className={styles.favIconActive} />
+        ) : (
+          <FavoriteBorderIcon width={24} height={24} className={styles.favIcon} />
+        )}
       </button>
     </div>
   )

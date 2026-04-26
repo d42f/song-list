@@ -27,7 +27,7 @@ export function LevelFilter({ selectedLevels, onToggleLevel }: Props) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <button className={styles.toggleBtn} onClick={() => setIsOpen(o => !o)}>
+        <button className={styles.toggleBtn} onClick={() => setIsOpen((o) => !o)}>
           {isOpen ? 'HIDE FILTER' : 'FILTER BY LEVEL'}
           {!isOpen && badge && <span className={styles.badge}>{badge}</span>}
           <FilterIcon width={20} height={20} className={styles.filterIcon} />
@@ -36,7 +36,7 @@ export function LevelFilter({ selectedLevels, onToggleLevel }: Props) {
 
       {isOpen && (
         <div className={styles.levels}>
-          {Array.from({ length: 15 }, (_, i) => i + 1).map(level => (
+          {Array.from({ length: 15 }, (_, i) => i + 1).map((level) => (
             <button
               key={level}
               className={`${styles.levelBtn} ${getLevelClass(level)} ${selectedLevels.has(level) ? styles.selected : ''}`}

@@ -12,9 +12,7 @@ export function Hero({ search, onSearchChange }: Props) {
       <div className={styles.overlay} />
       <div className={styles.content}>
         <h1 className={styles.title}>New songs delivered every week</h1>
-        <p className={styles.subtitle}>
-          Here are the most recent additions to the Yousician App. Start playing today!
-        </p>
+        <p className={styles.subtitle}>Here are the most recent additions to the Yousician App. Start playing today!</p>
         <div className={styles.searchWrapper}>
           <SearchIcon width={20} height={20} className={styles.searchIcon} />
           <input
@@ -22,7 +20,7 @@ export function Hero({ search, onSearchChange }: Props) {
             type="text"
             placeholder="Search for songs by artist or title"
             value={search}
-            onChange={e => onSearchChange(e.target.value)}
+            onChange={(e) => onSearchChange(e.target.value)}
           />
         </div>
       </div>

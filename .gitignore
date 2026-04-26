@@ -12,6 +12,8 @@ dist
 dist-ssr
 public
 *.local
+.env.production
+.env.production.local
 
 # Editor directories and files
 .vscode/*

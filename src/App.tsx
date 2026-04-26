@@ -10,8 +10,10 @@ export default function App() {
   const [searchInput, setSearchInput] = useState('')
   const search = useDeferredValue(searchInput)
   const [selectedLevels, setSelectedLevels] = useState(new Set<number>())
-  const { data, isFetchingNextPage, hasNextPage, isError, refetch, isLoading, fetchNextPage } =
-    useSongs(search, Array.from(selectedLevels))
+  const { data, isFetchingNextPage, hasNextPage, isError, refetch, isLoading, fetchNextPage } = useSongs(
+    search,
+    Array.from(selectedLevels),
+  )
   const { favorites, addFavorite, removeFavorite } = useFavorites()
 
   const songs = data?.pages.flatMap((p) => p.songs) ?? []

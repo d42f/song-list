@@ -7,8 +7,7 @@ const LIMIT = 20
 export function useSongs(search: string, levels: number[]) {
   return useInfiniteQuery({
     queryKey: ['songs', search, levels],
-    queryFn: ({ pageParam = 0 }) =>
-      fetchSongs({ start: pageParam as number, limit: LIMIT, search, levels }),
+    queryFn: ({ pageParam = 0 }) => fetchSongs({ start: pageParam as number, limit: LIMIT, search, levels }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {
       const loaded = allPages.flatMap((p) => p.songs).length
@@ -32,10 +31,7 @@ export function useFavorites() {
     onMutate: async (songId) => {
       await queryClient.cancelQueries({ queryKey: ['favorites'] })
       const previous = queryClient.getQueryData<Favorite[]>(['favorites'])
-      queryClient.setQueryData<Favorite[]>(['favorites'], (old) => [
-        ...(old ?? []),
-        { id: 0, songId },
-      ])
+      queryClient.setQueryData<Favorite[]>(['favorites'], (old) => [...(old ?? []), { id: 0, songId }])
       return { previous }
     },
     onError: (_err, _songId, context) => {
@@ -51,9 +47,7 @@ export function useFavorites() {
     onMutate: async (favoriteId) => {
       await queryClient.cancelQueries({ queryKey: ['favorites'] })
       const previous = queryClient.getQueryData<Favorite[]>(['favorites'])
-      queryClient.setQueryData<Favorite[]>(['favorites'], (old) =>
-        (old ?? []).filter((f) => f.id !== favoriteId),
-      )
+      queryClient.setQueryData<Favorite[]>(['favorites'], (old) => (old ?? []).filter((f) => f.id !== favoriteId))
       return { previous }
     },
     onError: (_err, _favoriteId, context) => {

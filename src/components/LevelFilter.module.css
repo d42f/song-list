@@ -47,7 +47,9 @@
   font-weight: 700;
   color: var(--color-text);
   opacity: 0.5;
-  transition: opacity 0.15s, transform 0.15s;
+  transition:
+    opacity 0.15s,
+    transform 0.15s;
 }
 
 .levelBtn:hover {
@@ -59,6 +61,12 @@
   transform: scale(1.1);
 }
 
-.green { background-color: var(--color-level-green); }
-.orange { background-color: var(--color-level-orange); }
-.red { background-color: var(--color-level-red); }
+.green {
+  background-color: var(--color-level-green);
+}
+.orange {
+  background-color: var(--color-level-orange);
+}
+.red {
+  background-color: var(--color-level-red);
+}

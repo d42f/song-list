@@ -9,20 +9,20 @@ Good luck! :)
 
 ## Requirements
 
--   The frontend must be built using [ReactJs](https://reactjs.org/)
--   You must use the provided API
--   Songs are displayed in an infinite scroll list
--   While songs are being fetched, a loader should be displayed
--   Songs can be filtered by level (song level goes from 1 to 15)
--   Songs can be searched
--   Songs can be added to favorite
--   Songs can be removed from favorite
--   The website must be responsive
+- The frontend must be built using [ReactJs](https://reactjs.org/)
+- You must use the provided API
+- Songs are displayed in an infinite scroll list
+- While songs are being fetched, a loader should be displayed
+- Songs can be filtered by level (song level goes from 1 to 15)
+- Songs can be searched
+- Songs can be added to favorite
+- Songs can be removed from favorite
+- The website must be responsive
 
 Bonus:
 
--   Add some tests
--   Want to show off? You can add any feature you desire
+- Add some tests
+- Want to show off? You can add any feature you desire
 
 ## Mockups and design
 

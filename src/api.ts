@@ -1,6 +1,6 @@
 import type { Favorite, FetchSongsParams, Song, SongsPage } from './types'
 
-const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3004'
+const BASE_URL = import.meta.env.VITE_API_URL
 
 export async function fetchSongs({
   start = 0,
