@@ -1,4 +1,4 @@
-.item {
+.wrapper {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -7,7 +7,7 @@
   min-height: 64px;
 }
 
-.item:last-child {
+.wrapper:last-child {
   border-bottom: none;
 }
 

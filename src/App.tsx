@@ -7,7 +7,7 @@ import styles from './App.module.css'
 export default function App() {
   return (
     <FiltersProvider>
-      <div className={styles.app}>
+      <div className={styles.wrapper}>
         <Hero />
         <div className={styles.content}>
           <LevelFilter />

@@ -16,14 +16,14 @@ export function SongList() {
     if (hasNextPage && !isFetchingNextPage) fetchNextPage()
   }, [hasNextPage, isFetchingNextPage, fetchNextPage])
 
-  const sentinelRef = useIntersectionObserver(handleSentinel, !!hasNextPage)
+  const sentinelRef = useIntersectionObserver<HTMLDivElement>(handleSentinel, !!hasNextPage)
 
   if (isLoading) {
     return <Loader />
   }
 
   return (
-    <div className={styles.list}>
+    <div className={styles.wrapper}>
       {songs.map((song) => (
         <SongItem key={song.id} song={song} />
       ))}

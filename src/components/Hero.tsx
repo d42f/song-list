@@ -5,7 +5,7 @@ import styles from './Hero.module.css'
 export function Hero() {
   const { searchInput: search, setSearchInput } = useFilters()
   return (
-    <div className={styles.hero}>
+    <div className={styles.wrapper}>
       <div className={styles.overlay} />
       <div className={styles.content}>
         <h1 className={styles.title}>New songs delivered every week</h1>

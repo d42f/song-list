@@ -1,4 +1,4 @@
-.hero {
+.wrapper {
   position: relative;
   min-height: 220px;
   display: flex;
@@ -72,7 +72,7 @@
 }
 
 @media (max-width: 480px) {
-  .hero {
+  .wrapper {
     background-image: url('/assets/yousician-hero-mobile.png');
     min-height: 180px;
   }

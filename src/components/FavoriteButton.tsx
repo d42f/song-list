@@ -17,16 +17,18 @@ export function FavoriteButton({ songId }: Props) {
     }
   }
 
+  const size = { width: 24, height: 24 }
+
   return (
     <button
-      className={styles.btn}
+      className={styles.wrapper}
       onClick={handleClick}
       aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
     >
       {isFavorite ? (
-        <FavoriteIcon width={24} height={24} className={styles.iconActive} />
+        <FavoriteIcon className={styles.iconActive} {...size} />
       ) : (
-        <FavoriteBorderIcon width={24} height={24} className={styles.icon} />
+        <FavoriteBorderIcon className={styles.icon} {...size} />
       )}
     </button>
   )

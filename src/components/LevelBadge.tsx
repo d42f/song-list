@@ -11,5 +11,5 @@ function getLevelClass(level: number): string {
 }
 
 export function LevelBadge({ level }: Props) {
-  return <span className={`${styles.badge} ${getLevelClass(level)}`}>{level}</span>
+  return <span className={`${styles.wrapper} ${getLevelClass(level)}`}>{level}</span>
 }

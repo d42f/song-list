@@ -1,18 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { RefObject, useEffect, useRef } from 'react'
 
-export function useIntersectionObserver(callback: () => void, enabled: boolean) {
-  const ref = useRef<HTMLDivElement>(null)
+export function useIntersectionObserver<T extends HTMLElement>(
+  callback: () => void,
+  enabled: boolean,
+  options: IntersectionObserverInit = { rootMargin: '200px' },
+): RefObject<T> {
+  const ref = useRef<T>(null)
 
   useEffect(() => {
     const el = ref.current
     if (!el || !enabled) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) callback()
-      },
-      { rootMargin: '200px' },
-    )
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) callback()
+    }, options)
 
     observer.observe(el)
     return () => observer.disconnect()
