@@ -1,14 +1,16 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { renderHook, waitFor } from '@testing-library/react'
+import { renderHook, waitFor, act } from '@testing-library/react'
 import { createElement } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { fetchFavorites, fetchSongs } from '../api'
+import { addFavorite, fetchFavorites, fetchSongs, removeFavorite } from '../api'
 import { useFavorites, useSongs } from '../hooks/useApi'
 
 vi.mock('../api')
 
 const mockFetchSongs = vi.mocked(fetchSongs)
 const mockFetchFavorites = vi.mocked(fetchFavorites)
+const mockAddFavorite = vi.mocked(addFavorite)
+const mockRemoveFavorite = vi.mocked(removeFavorite)
 
 function createWrapper() {
   const client = new QueryClient({ defaultOptions: { queries: { retry: false } } })
@@ -57,10 +59,35 @@ describe('useSongs', () => {
 describe('useFavorites', () => {
   afterEach(() => vi.clearAllMocks())
 
-  it('loads favorites map', async () => {
-    mockFetchFavorites.mockResolvedValue([{ id: 'f1', songId: 's1' }])
-    const { result } = renderHook(() => useFavorites(), { wrapper: createWrapper() })
+  it('returns isFavorite=true when song is in favorites', async () => {
+    mockFetchFavorites.mockResolvedValue([{ id: 1, songId: 's1' }])
+    const { result } = renderHook(() => useFavorites('s1'), { wrapper: createWrapper() })
     await waitFor(() => expect(result.current.isLoading).toBe(false))
-    expect(result.current.favoritesMap.get('s1')).toBe('f1')
+    expect(result.current.isFavorite).toBe(true)
+  })
+
+  it('returns isFavorite=false when song is not in favorites', async () => {
+    mockFetchFavorites.mockResolvedValue([{ id: 1, songId: 's2' }])
+    const { result } = renderHook(() => useFavorites('s1'), { wrapper: createWrapper() })
+    await waitFor(() => expect(result.current.isLoading).toBe(false))
+    expect(result.current.isFavorite).toBe(false)
+  })
+
+  it('calls addFavorite with songId', async () => {
+    mockFetchFavorites.mockResolvedValue([])
+    mockAddFavorite.mockResolvedValue({ id: 2, songId: 's1' })
+    const { result } = renderHook(() => useFavorites('s1'), { wrapper: createWrapper() })
+    await waitFor(() => expect(result.current.isLoading).toBe(false))
+    act(() => result.current.addFavorite())
+    await waitFor(() => expect(mockAddFavorite).toHaveBeenCalledWith('s1'))
+  })
+
+  it('calls removeFavorite with favoriteId', async () => {
+    mockFetchFavorites.mockResolvedValue([{ id: 5, songId: 's1' }])
+    mockRemoveFavorite.mockResolvedValue()
+    const { result } = renderHook(() => useFavorites('s1'), { wrapper: createWrapper() })
+    await waitFor(() => expect(result.current.isLoading).toBe(false))
+    act(() => result.current.removeFavorite())
+    await waitFor(() => expect(mockRemoveFavorite).toHaveBeenCalledWith(5))
   })
 })
