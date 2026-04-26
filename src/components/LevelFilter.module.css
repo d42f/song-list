@@ -6,22 +6,30 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 12px;
-}
-
-.toggleBtnText {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
 }
 
 .toggleBtn {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  gap: 12px;
+  font-size: var(--font-size);
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+}
+
+.toggleBtnText {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.toggleBtnBar {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
   justify-content: center;
   position: relative;
-  color: var(--color-text);
   border: 2px solid var(--color-text);
   border-radius: 16px;
   overflow: hidden;
@@ -40,11 +48,15 @@
 }
 
 .toggleBtn.active {
+  gap: 16px;
+}
+
+.toggleBtn.active .toggleBtnBar {
   background-color: var(--color-text);
   border-color: var(--color-text);
 }
 
-.toggleBtn.active:after {
+.toggleBtn.active .toggleBtnBar:after {
   content: '';
   position: absolute;
   inset: 0;
@@ -59,10 +71,9 @@
 }
 
 .badge {
-  padding: 0 10px 0 16px;
+  padding: 0 10px 0 12px;
   position: relative;
   z-index: 1;
-  color: var(--color-white);
 }
 
 .levels {
@@ -74,11 +85,15 @@
 }
 
 .levelBtn {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 32px;
   height: 32px;
+  font-size: var(--font-size);
+  letter-spacing: 0.02em;
+  color: var(--color-text);
 }
 
 .levelBadge {

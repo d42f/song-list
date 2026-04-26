@@ -19,11 +19,13 @@ export function LevelFilter() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <span className={styles.toggleBtnText}>{isOpen ? 'HIDE FILTER' : 'FILTER BY LEVEL'}</span>
         <button className={`${styles.toggleBtn} ${badge ? styles.active : ''}`} onClick={() => setIsOpen((o) => !o)}>
-          {badge && <span className={styles.badge}>{badge}</span>}
-          <span className={styles.filterIcon}>
-            <FilterIcon />
+          <span className={styles.toggleBtnText}>{isOpen ? 'HIDE FILTER' : 'FILTER BY LEVEL'}</span>
+          <span className={styles.toggleBtnBar}>
+            {badge && <span className={styles.badge}>{badge}</span>}
+            <span className={styles.filterIcon}>
+              <FilterIcon />
+            </span>
           </span>
         </button>
       </div>

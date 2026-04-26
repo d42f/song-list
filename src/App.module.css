@@ -1,5 +1,6 @@
 .wrapper {
   min-height: 100vh;
+  font-size: var(--font-size);
 }
 
 .content {
