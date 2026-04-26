@@ -1,16 +1,13 @@
 import { useCallback } from 'react'
+import { useFilters } from '../context/FiltersContext'
 import { useSongs } from '../hooks/useApi'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import { Loader } from './Loader'
 import { SongItem } from './SongItem'
 import styles from './SongList.module.css'
 
-interface Props {
-  search: string
-  levels: number[]
-}
-
-export function SongList({ search, levels }: Props) {
+export function SongList() {
+  const { search, levels } = useFilters()
   const { data, isFetchingNextPage, hasNextPage, isError, refetch, isLoading, fetchNextPage } = useSongs(search, levels)
 
   const songs = data?.pages.flatMap((p) => p.songs) ?? []

@@ -1,12 +1,9 @@
 import SearchIcon from '@icons/search.svg?react'
+import { useFilters } from '../context/FiltersContext'
 import styles from './Hero.module.css'
 
-interface Props {
-  search: string
-  onSearchChange: (value: string) => void
-}
-
-export function Hero({ search, onSearchChange }: Props) {
+export function Hero() {
+  const { searchInput: search, setSearchInput } = useFilters()
   return (
     <div className={styles.hero}>
       <div className={styles.overlay} />
@@ -20,7 +17,7 @@ export function Hero({ search, onSearchChange }: Props) {
             type="text"
             placeholder="Search for songs by artist or title"
             value={search}
-            onChange={(e) => onSearchChange(e.target.value)}
+            onChange={(e) => setSearchInput(e.target.value)}
           />
         </div>
       </div>

@@ -1,11 +1,7 @@
 import { useState } from 'react'
 import FilterIcon from '@icons/filter.svg?react'
+import { useFilters } from '../context/FiltersContext'
 import styles from './LevelFilter.module.css'
-
-interface Props {
-  selectedLevels: Set<number>
-  onToggleLevel: (level: number) => void
-}
 
 function getLevelClass(level: number): string {
   if (level <= 5) return styles.green
@@ -20,9 +16,10 @@ function getSelectedBadge(levels: Set<number>): string | null {
   return `${sorted[0]} - ${sorted[sorted.length - 1]}`
 }
 
-export function LevelFilter({ selectedLevels, onToggleLevel }: Props) {
+export function LevelFilter() {
+  const { mappedLevels, handleToggleLevel: onToggleLevel } = useFilters()
   const [isOpen, setIsOpen] = useState(false)
-  const badge = getSelectedBadge(selectedLevels)
+  const badge = getSelectedBadge(mappedLevels)
 
   return (
     <div className={styles.wrapper}>
@@ -39,9 +36,9 @@ export function LevelFilter({ selectedLevels, onToggleLevel }: Props) {
           {Array.from({ length: 15 }, (_, i) => i + 1).map((level) => (
             <button
               key={level}
-              className={`${styles.levelBtn} ${getLevelClass(level)} ${selectedLevels.has(level) ? styles.selected : ''}`}
+              className={`${styles.levelBtn} ${getLevelClass(level)} ${mappedLevels.has(level) ? styles.selected : ''}`}
               onClick={() => onToggleLevel(level)}
-              aria-pressed={selectedLevels.has(level)}
+              aria-pressed={mappedLevels.has(level)}
             >
               {level}
             </button>
