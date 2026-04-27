@@ -1,22 +1,18 @@
 .wrapper {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 28px;
   height: 28px;
   line-height: 1;
-  border: 2px solid transparent;
-  border-radius: 50%;
   font-size: 0.75rem;
   font-weight: 600;
 }
 
-.green {
-  border-color: var(--color-level-green);
-}
-.orange {
-  border-color: var(--color-level-orange);
-}
-.red {
-  border-color: var(--color-level-red);
+.ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
 }

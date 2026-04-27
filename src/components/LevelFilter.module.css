@@ -94,18 +94,25 @@
   font-size: var(--font-size);
   letter-spacing: 0.02em;
   color: var(--color-text);
-}
-
-.levelBadge {
+  border-radius: 50%;
   transition: all 0.15s;
 }
 
-.levelBtn.selected .levelBadge {
-  width: 32px;
-  height: 32px;
+.levelBadge {
+  svg {
+    opacity: 1;
+  }
+}
+
+.levelBtn.selected {
   background-color: var(--color-text);
-  border-color: var(--color-white);
   color: var(--color-bg);
+}
+
+.levelBtn.selected .levelBadge {
+  svg {
+    opacity: 0;
+  }
 }
 
 @media (max-width: 480px) {
