@@ -1,4 +1,4 @@
-# Yousician Webb App Developer Assignment
+# Web App Developer Assignment
 
 This exercise is meant to test your general knowledge and to show that you have well balanced skills in frontend development.
 Your assignment will be evaluated on the quality of your code, the compliance with the design, the responsiveness, the stability,
