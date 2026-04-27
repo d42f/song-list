@@ -43,6 +43,10 @@
   border-radius: 2rem;
 }
 
+.searchWrapper:focus-within {
+  box-shadow: inset 0 3px 10px color-mix(in srgb, var(--color-dark) 35%, transparent);
+}
+
 .searchIcon {
   flex-shrink: 0;
 }
